@@ -29,6 +29,8 @@ module.exports = async (req, res, next) => {
         .status(401)
         .json({ message: "User not found, authorization denied" });
     }
+        console.log("User found:", req.user);
+
     next(); //bt-pass control to the next middleware or route handler.
   } catch (error) {
     console.log("Token Verification Error:", error.message);

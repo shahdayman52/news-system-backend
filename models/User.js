@@ -3,7 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      // define association here
+   User.hasMany(models.Article, { foreignKey: "userId", as: "articles" });
     }
   }
   User.init(
@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "user", // default role is 'user'
       },
     },
     {

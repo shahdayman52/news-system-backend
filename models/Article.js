@@ -19,6 +19,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      status:{
+        type:DataTypes.STRING,
+        allowNull:false,
+        defaultValue:'New'
+      }
+      ,
     },
     {
       timestamps: true, // This will add `createdAt` and `updatedAt` fields
@@ -26,8 +32,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Article.associate = function (models) {
-    // associations can be defined here
+    Article.belongsTo(models.User, { foreignKey: "userId", as: "author" });
   };
-
   return Article;
 };

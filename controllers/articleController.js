@@ -4,7 +4,6 @@ const { validationResult } = require("express-validator");
 const { Op } = require("sequelize");
 
 
-
 exports.createArticle = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -75,17 +74,6 @@ exports.deleteArticle = async (req, res) => {
 };
 
 
-// exports.listArticles = async (req, res) => {
-//   try {
-//     const articles = await Article.findAll();
-//     res.status(200).json({ articles });
-//   } catch (error) {
-//     console.error("Error in listArticles:", error); // Log the error to the console
-//     res
-//       .status(500)
-//       .json({ message: "Server error", error: error.message || error });
-//   }
-// };
 
 
 exports.listArticles = async (req, res) => {
@@ -120,94 +108,3 @@ exports.listArticles = async (req, res) => {
   }
 };
 
-
-
-// exports.listArticles = bodyParser.json(), async (req, res) => {
-//   const { page = 1, sort = "createdAt", dir = "desc", search = "" } = req.query;
-//   const limit = 3; // Set the limit to 3 articles per page
-//   const offset = (page - 1) * limit;
-
-//   try {
-//     const { count, rows: articles } = await Article.findAndCountAll({
-//       where: {
-//         title: {
-//           [Op.like]: `%${search}%`,
-//         },
-//       },
-//       order: [[sort, dir]],
-//       limit,
-//       offset,
-//     });
-
-//     res.status(200).json({
-//       articles,
-//       pagination: {
-//         page: parseInt(page),
-//         total: count,
-//       },
-//     });
-//   } catch (error) {
-//     console.error("Error in listArticles:", error); // Log the error to the console
-//     next(error); // Pass the error to the next middleware
-//   }
-// };
-
-// exports.listArticles = async (req, res) => {
-//   const { page = 1, sort = "createdAt", dir = "desc", search = "" } = req.query;
-//   const limit = 3; // Set the limit to 3 articles per page
-//   const offset = (page - 1) * limit;
-
-//   try {
-//     const { count, rows: articles } = await Article.findAndCountAll({
-//       where: {
-//         title: {
-//           [Op.like]: `%${search}%`,
-//         },
-//       },
-//       order: [[sort, dir]],
-//       limit,
-//       offset,
-//     });
-
-//     res.status(200).json({
-//       articles,
-//       pagination: {
-//         page: parseInt(page),
-//         total: count,
-//       },
-//     });
-//   } catch (error) {
-//     console.error("Error in listArticles:", error); // Log the error to the console
-//     res
-//       .status(500)
-//       .json({ message: "Server error", error: error.message || error });
-//   }
-// };
-// exports.listArticles = async (req, res) => {
-//   const { page = 1, sort = "createdAt", dir = "desc", search = "" } = req.query;
-//   const limit = 10;
-//   const offset = (page - 1) * limit;
-
-//   try {
-//     const { count, rows: articles } = await Article.findAndCountAll({
-//       where: {
-//         title: {
-//           [Op.like]: `%${search}%`,
-//         },
-//       },
-//       order: [[sort, dir]],
-//       limit,
-//       offset,
-//     });
-
-//     res.status(200).json({
-//       articles,
-//       pagination: {
-//         page: parseInt(page),
-//         total: count,
-//       },
-//     });
-//   } catch (error) {
-//     res.status(500).json({ message: "Server error", error });
-//   }
-// };
